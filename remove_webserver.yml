@@ -1,0 +1,22 @@
+---
+- name: 웹서버 중지, 삭제
+  hosts: all
+  become: true
+
+  tasks:
+    - name: httpd 중지
+      service: name=httpd state=stopped
+      when: ansible_distribution == 'Amazon'
+
+    - name: httpd 삭제
+      action: "{{ ansible_pkg_mgr }} name=httpd state=absent"
+      when: ansible_distribution == 'Amazon'
+
+    - name: nginx 중지
+      service: name=nginx state=stopped
+      when: ansible_distribution == 'Ubuntu'
+
+    - name: nginx 삭제
+      action: "{{ ansible_pkg_mgr }} name=nginx state=absent autoremove=yes purge=yes"
+      when: ansible_distribution == 'Ubuntu'
+

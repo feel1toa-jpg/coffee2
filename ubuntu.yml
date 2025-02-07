@@ -1,0 +1,9 @@
+    - name: 우분투에서 nginx 설치
+      action: "{{ ansible_pkg_mgr }} name=nginx state=present"
+
+    - name: nginx 시작
+      service: name=nginx state=started
+
+    - name: index.html 만들기
+      get_url: url=https://www.daum.net dest=/var/www/html/index.html
+
