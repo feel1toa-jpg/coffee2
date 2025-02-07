@@ -1,0 +1,30 @@
+---
+- name: 웹서버 설치
+  hosts: seoul
+  gather_facts: false
+  become: true
+  tasks: 
+    - name: git 설치
+      yum: 
+        name: git
+        state: latest
+
+    - name: httpd 설치
+      yum:
+        name: httpd
+        state: latest
+
+    - name: httpd 포트 변경
+      lineinfile:
+        path: /etc/httpd/conf/httpd.conf
+        regexp: '^Listen\s+'
+        line: 'Listen 80'
+      notify:
+        - restart httpd
+
+  handlers:
+    - name: restart httpd
+      service:
+        name: httpd
+        state: restarted
+        enabled: true 

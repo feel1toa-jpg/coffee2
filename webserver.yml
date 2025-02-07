@@ -1,0 +1,31 @@
+---
+- name: 배포판 별로 웹서버 설치
+  hosts: all #인벤토리 안 모든 파일에 작업
+  become: true
+  gather_facts: true #안써도 상관 없음
+
+  tasks:
+    - name: 아마존 리눅스에 웹서버 설치
+      action: "{{ ansible_pkg_mgr }} name=httpd state=latest" #설치 가능, 아래에 조건 걸기
+      when: ansible_distribution == 'Amazon'
+    
+    - name: httpd 시작
+      service: name=httpd state=started
+      when: ansible_distribution == 'Amazon'
+
+    - name: index.html 만들기
+      get_url: url=https://www.daum.net dest=/var/www/html/index.html
+      when: ansible_distribution == 'Amazon'
+
+    - name: 우분투에 nginx 설치
+      action: "{{ ansible_pkg_mgr }} name=nginx state=present"
+      when: ansible_distribution == 'Ubuntu'
+
+    - name: nginx 시작
+      service: name=nginx state=started
+      when: ansible_distribution == 'Ubuntu'
+
+    - name: index.html 만들기
+      get_url: url=https://www.daum.net dest=/var/www/html/index.html
+      when: ansible_distribution == 'Ubuntu'
+
