@@ -478,3 +478,63 @@ vi if_webserver.yml
 anp if_webserver.yml -i inv
 ansible amazon -i inv -m shell -a "yum -y install httpd" --become
 anp if_webserver.yml -i inv
+sudo yum list | grep java
+sudo yum install -y java-17-amazon-corretto-devel.x86_64
+sudo yum install -y jenkins
+sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+sudo yum install -y jenkins
+sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+sudo systemctl daemon-reload
+sudo systemctl start jenkins
+sudo yum install -y jenkins
+sudo systemctl daemon-reload
+sudo systemctl start jenkins
+cd /var/lib/jenkins/secrets/initialAdminPassword
+sudo cd /var/lib/jenkins/secrets/initialAdminPassword
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+ls
+git init
+sudo yum update -y
+sudo yum install -y git
+vi inv
+ls
+vi inv
+git init
+sudo -i
+git init
+git remote add origin https://github.com/feel1toa-jpg/coffee
+git add remove_webserver.yml
+git add inv
+git add amazon.yml
+git add ubuntu.yml
+git add if_webserver.yml
+git commit -m "커피마시고싶다.."
+git push
+git branch
+git push -u origin master
+git push origin master
+git push -u origin master
+git push origin masterfatal: Authentication failed for 'https://github.com/feel1toa-jpg/coffee/'
+[ec2-user@ip-172-31-6-2 ~]$ git push -u origin master
+Username for 'https://github.com': feel1toa-jpg
+Password for 'https://feel1toa-jpg@github.com':
+remote: Permission to feel1toa-jpg/coffee.git denied to feel1toa-jpg.
+fatal: unable to access 'https://github.com/feel1toa-jpg/coffee/': The requested URL returned error: 403
+fatal: Authentication failed for 'https://github.com/feel1toa-jpg/coffee/'
+[ec2-user@ip-172-31-6-2 ~]$ git push -u origin master
+Username for 'https://github.com': feel1toa-jpg
+Password for 'https://feel1toa-jpg@github.com':
+remote: Permission to feel1toa-jpg/coffee.git denied to feel1toa-jpg.
+fatal: unable to access 'https://github.com/feel1toa-jpg/coffee/': The requested URL returned error: 403
+git status
+git add .
+git commit -m "커밋 메시지"
+git commit -m "커피 마시고 싶다.."
+git push
+git push origin master
+git push
+git push origin master
+git remote set-url origin https://github.com/feel1toa-jpg/coffee
+git push origin master
+ls
+cd jenkins
